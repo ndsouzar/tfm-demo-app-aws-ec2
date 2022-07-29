@@ -165,10 +165,17 @@ resource "aws_security_group" "allow_safe_access" {
   vpc_id      = aws_vpc.safe-vpc-network.id
 
   ingress {
-    description      = "SSH to EC2"
-    from_port        = 1
-    to_port          = 65000
-    protocol         = "tcp"
+    description      = "all access"
+    from_port        = 0
+    to_port          = 0
+    protocol         = -1
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+  egress {
+    description      = "all access"
+    from_port        = 0
+    to_port          = 0
+    protocol         = -1
     cidr_blocks      = ["0.0.0.0/0"]
   }
   tags = {
@@ -177,9 +184,22 @@ resource "aws_security_group" "allow_safe_access" {
 }
 
 #Create Frontend Server
+data "template_file" "fronendinit" {
+  template = file("scripts/front-startup.sh")
+}
+data "template_cloudinit_config" "frontendconfig" {
+  gzip          = true
+  base64_encode = true
+  part {
+    filename     = "appconfig.cfg"
+    content_type = "text/x-shellscript"
+    content      = data.template_file.fronendinit.rendered
+  }
+}
 resource "aws_network_interface" "frontend" {
   subnet_id   = aws_subnet.websubnet1.id
   private_ips = ["10.0.1.10"]
+  security_groups   = [aws_security_group.allow_safe_access.id]
   tags = {
     Name = "frontend"
   }
@@ -187,11 +207,11 @@ resource "aws_network_interface" "frontend" {
 resource "aws_instance" "frontend" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
+   user_data_base64  = data.template_cloudinit_config.frontendconfig.rendered
    network_interface {
     network_interface_id = aws_network_interface.frontend.id
     device_index         = 0
   }
-  security_groups   = [aws_security_group.allow_safe_access.id]
   key_name = var.keyname
   tags = {
     Name = "frontend"
@@ -212,6 +232,7 @@ resource "aws_eip_association" "frontendeipassociation" {
 resource "aws_network_interface" "checkout" {
   subnet_id   = aws_subnet.appsubnet1.id
   private_ips = ["10.0.3.10"]
+  security_groups   = [aws_security_group.allow_safe_access.id]
   tags = {
     Name = "checkout"
   }
@@ -223,7 +244,6 @@ resource "aws_instance" "checkout" {
     network_interface_id = aws_network_interface.checkout.id
     device_index         = 0
   }
-  security_groups   = [aws_security_group.allow_safe_access.id]
   key_name = var.keyname
   tags = {
     Name = "checkout"
@@ -234,6 +254,7 @@ resource "aws_instance" "checkout" {
 resource "aws_network_interface" "ad" {
   subnet_id   = aws_subnet.appsubnet1.id
   private_ips = ["10.0.3.11"]
+  security_groups   = [aws_security_group.allow_safe_access.id]
   tags = {
     Name = "ad"
   }
@@ -245,7 +266,6 @@ resource "aws_instance" "ad" {
     network_interface_id = aws_network_interface.ad.id
     device_index         = 0
   }
-  security_groups   = [aws_security_group.allow_safe_access.id]
   key_name = var.keyname
   tags = {
     Name = "ad"
@@ -255,6 +275,7 @@ resource "aws_instance" "ad" {
 resource "aws_network_interface" "recommendation" {
   subnet_id   = aws_subnet.appsubnet1.id
   private_ips = ["10.0.3.12"]
+  security_groups   = [aws_security_group.allow_safe_access.id]
   tags = {
     Name = "recommendation"
   }
@@ -266,7 +287,6 @@ resource "aws_instance" "recommendation" {
     network_interface_id = aws_network_interface.recommendation.id
     device_index         = 0
   }
-  security_groups   = [aws_security_group.allow_safe_access.id]
   key_name = var.keyname
   tags = {
     Name = "recommendation"
@@ -276,6 +296,7 @@ resource "aws_instance" "recommendation" {
 resource "aws_network_interface" "payment" {
   subnet_id   = aws_subnet.appsubnet1.id
   private_ips = ["10.0.3.13"]
+  security_groups   = [aws_security_group.allow_safe_access.id]
   tags = {
     Name = "payment"
   }
@@ -287,7 +308,6 @@ resource "aws_instance" "payment" {
     network_interface_id = aws_network_interface.payment.id
     device_index         = 0
   }
-  security_groups   = [aws_security_group.allow_safe_access.id]
   key_name = var.keyname
   tags = {
     Name = "payment"
@@ -297,6 +317,7 @@ resource "aws_instance" "payment" {
 resource "aws_network_interface" "emails" {
   subnet_id   = aws_subnet.appsubnet1.id
   private_ips = ["10.0.3.14"]
+  security_groups   = [aws_security_group.allow_safe_access.id]
   tags = {
     Name = "emails"
   }
@@ -308,7 +329,6 @@ resource "aws_instance" "emails" {
     network_interface_id = aws_network_interface.emails.id
     device_index         = 0
   }
-  security_groups   = [aws_security_group.allow_safe_access.id]
   key_name = var.keyname
   tags = {
     Name = "emails"
@@ -318,6 +338,7 @@ resource "aws_instance" "emails" {
 resource "aws_network_interface" "productcatalog" {
   subnet_id   = aws_subnet.appsubnet1.id
   private_ips = ["10.0.3.15"]
+  security_groups   = [aws_security_group.allow_safe_access.id]
   tags = {
     Name = "checkout"
   }
@@ -329,7 +350,6 @@ resource "aws_instance" "productcatalog" {
     network_interface_id = aws_network_interface.productcatalog.id
     device_index         = 0
   }
-  security_groups   = [aws_security_group.allow_safe_access.id]
   key_name = var.keyname
   tags = {
     Name = "productcatalog"
@@ -339,6 +359,7 @@ resource "aws_instance" "productcatalog" {
 resource "aws_network_interface" "shipping" {
   subnet_id   = aws_subnet.appsubnet1.id
   private_ips = ["10.0.3.16"]
+  security_groups   = [aws_security_group.allow_safe_access.id]
   tags = {
     Name = "shipping"
   }
@@ -350,7 +371,6 @@ resource "aws_instance" "shipping" {
     network_interface_id = aws_network_interface.shipping.id
     device_index         = 0
   }
-  security_groups   = [aws_security_group.allow_safe_access.id]
   key_name = var.keyname
   tags = {
     Name = "shipping"
@@ -360,6 +380,7 @@ resource "aws_instance" "shipping" {
 resource "aws_network_interface" "currency" {
   subnet_id   = aws_subnet.appsubnet1.id
   private_ips = ["10.0.3.17"]
+  security_groups   = [aws_security_group.allow_safe_access.id]
   tags = {
     Name = "currency"
   }
@@ -371,7 +392,6 @@ resource "aws_instance" "currency" {
     network_interface_id = aws_network_interface.currency.id
     device_index         = 0
   }
-  security_groups   = [aws_security_group.allow_safe_access.id]
   key_name = var.keyname
   tags = {
     Name = "currency"
@@ -381,6 +401,7 @@ resource "aws_instance" "currency" {
 resource "aws_network_interface" "cart" {
   subnet_id   = aws_subnet.appsubnet1.id
   private_ips = ["10.0.3.18"]
+  security_groups   = [aws_security_group.allow_safe_access.id]
   tags = {
     Name = "cart"
   }
@@ -392,7 +413,6 @@ resource "aws_instance" "cart" {
     network_interface_id = aws_network_interface.cart.id
     device_index         = 0
   }
-  security_groups   = [aws_security_group.allow_safe_access.id]
   key_name = var.keyname
   tags = {
     Name = "cart"
@@ -400,8 +420,9 @@ resource "aws_instance" "cart" {
 }
 #Create redis Server
 resource "aws_network_interface" "redis" {
-  subnet_id   = aws_subnet.appsubnet1.id
-  private_ips = ["10.0.3.19"]
+  subnet_id   = aws_subnet.dbsubnet1.id
+  private_ips = ["10.0.5.10"]
+  security_groups   = [aws_security_group.allow_safe_access.id]
   tags = {
     Name = "redis"
   }
@@ -413,7 +434,6 @@ resource "aws_instance" "redis" {
     network_interface_id = aws_network_interface.redis.id
     device_index         = 0
   }
-  security_groups   = [aws_security_group.allow_safe_access.id]
   key_name = var.keyname
   tags = {
     Name = "redis"

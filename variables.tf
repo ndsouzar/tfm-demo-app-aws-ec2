@@ -28,10 +28,10 @@ variable dbname {
 variable "images" {
   type    = map(string)
   default = {
-    "us-east-1" = "ami-00e87074e52e6c9f9"
-    "us-west-1" = "ami-08d2d8b00f270d03b"
-    "us-east-2" = "ami-00f8e2c955f7ffa9b"
-    "us-west-2" = "ami-0686851c4e7b1a8e1"
+    "us-east-1" = "ami-0070c5311b7677678"
+    "us-west-1" = "ami-040a251ee9d7d1a9b"
+    "us-east-2" = "ami-07f84a50d2dec2fa4"
+    "us-west-2" = "ami-0aab355e1bfa1e72e"
   }
 }
 
