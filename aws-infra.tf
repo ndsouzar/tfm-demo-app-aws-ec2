@@ -184,7 +184,7 @@ resource "aws_security_group" "allow_safe_access" {
 }
 
 #Create Frontend Server
-data "template_file" "fronendinit" {
+data "template_file" "frontendinit" {
   template = file("scripts/front-startup.sh")
 }
 data "template_cloudinit_config" "frontendconfig" {
@@ -193,7 +193,7 @@ data "template_cloudinit_config" "frontendconfig" {
   part {
     filename     = "appconfig.cfg"
     content_type = "text/x-shellscript"
-    content      = data.template_file.fronendinit.rendered
+    content      = data.template_file.frontendinit.rendered
   }
 }
 resource "aws_network_interface" "frontend" {
@@ -229,6 +229,18 @@ resource "aws_eip_association" "frontendeipassociation" {
 
 
 #Create checkout Server
+data "template_file" "checkoutinit" {
+  template = file("scripts/checkout-startup.sh")
+}
+data "template_cloudinit_config" "checkoutconfig" {
+  gzip          = true
+  base64_encode = true
+  part {
+    filename     = "appconfig.cfg"
+    content_type = "text/x-shellscript"
+    content      = data.template_file.checkoutinit.rendered
+  }
+}
 resource "aws_network_interface" "checkout" {
   subnet_id   = aws_subnet.appsubnet1.id
   private_ips = ["10.0.3.10"]
@@ -240,6 +252,7 @@ resource "aws_network_interface" "checkout" {
 resource "aws_instance" "checkout" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
+   user_data_base64  = data.template_cloudinit_config.checkoutconfig.rendered
    network_interface {
     network_interface_id = aws_network_interface.checkout.id
     device_index         = 0
@@ -251,6 +264,18 @@ resource "aws_instance" "checkout" {
 }
 
 #Create ad Server
+data "template_file" "adinit" {
+  template = file("scripts/ad-startup.sh")
+}
+data "template_cloudinit_config" "adconfig" {
+  gzip          = true
+  base64_encode = true
+  part {
+    filename     = "appconfig.cfg"
+    content_type = "text/x-shellscript"
+    content      = data.template_file.adinit.rendered
+  }
+}
 resource "aws_network_interface" "ad" {
   subnet_id   = aws_subnet.appsubnet1.id
   private_ips = ["10.0.3.11"]
@@ -262,6 +287,7 @@ resource "aws_network_interface" "ad" {
 resource "aws_instance" "ad" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
+   user_data_base64  = data.template_cloudinit_config.adconfig.rendered
    network_interface {
     network_interface_id = aws_network_interface.ad.id
     device_index         = 0
@@ -272,6 +298,18 @@ resource "aws_instance" "ad" {
   }
 }
 #Create recommendation Server
+data "template_file" "recommendationinit" {
+  template = file("scripts/recommendation-startup.sh")
+}
+data "template_cloudinit_config" "recommendationconfig" {
+  gzip          = true
+  base64_encode = true
+  part {
+    filename     = "appconfig.cfg"
+    content_type = "text/x-shellscript"
+    content      = data.template_file.recommendationinit.rendered
+  }
+}
 resource "aws_network_interface" "recommendation" {
   subnet_id   = aws_subnet.appsubnet1.id
   private_ips = ["10.0.3.12"]
@@ -283,6 +321,7 @@ resource "aws_network_interface" "recommendation" {
 resource "aws_instance" "recommendation" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
+   user_data_base64  = data.template_cloudinit_config.recommendationconfig.rendered
    network_interface {
     network_interface_id = aws_network_interface.recommendation.id
     device_index         = 0
@@ -293,6 +332,18 @@ resource "aws_instance" "recommendation" {
   }
 }
 #Create payment Server
+data "template_file" "paymentinit" {
+  template = file("scripts/payment-startup.sh")
+}
+data "template_cloudinit_config" "paymentconfig" {
+  gzip          = true
+  base64_encode = true
+  part {
+    filename     = "appconfig.cfg"
+    content_type = "text/x-shellscript"
+    content      = data.template_file.paymentinit.rendered
+  }
+}
 resource "aws_network_interface" "payment" {
   subnet_id   = aws_subnet.appsubnet1.id
   private_ips = ["10.0.3.13"]
@@ -304,6 +355,7 @@ resource "aws_network_interface" "payment" {
 resource "aws_instance" "payment" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
+   user_data_base64  = data.template_cloudinit_config.paymentconfig.rendered
    network_interface {
     network_interface_id = aws_network_interface.payment.id
     device_index         = 0
@@ -314,6 +366,18 @@ resource "aws_instance" "payment" {
   }
 }
 #Create emails Server
+data "template_file" "emailsinit" {
+  template = file("scripts/emails-startup.sh")
+}
+data "template_cloudinit_config" "emailsconfig" {
+  gzip          = true
+  base64_encode = true
+  part {
+    filename     = "appconfig.cfg"
+    content_type = "text/x-shellscript"
+    content      = data.template_file.emailsinit.rendered
+  }
+}
 resource "aws_network_interface" "emails" {
   subnet_id   = aws_subnet.appsubnet1.id
   private_ips = ["10.0.3.14"]
@@ -325,6 +389,7 @@ resource "aws_network_interface" "emails" {
 resource "aws_instance" "emails" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
+   user_data_base64  = data.template_cloudinit_config.emailsconfig.rendered
    network_interface {
     network_interface_id = aws_network_interface.emails.id
     device_index         = 0
@@ -335,6 +400,18 @@ resource "aws_instance" "emails" {
   }
 }
 #Create productcatalog Server
+data "template_file" "productcataloginit" {
+  template = file("scripts/productcatalog-startup.sh")
+}
+data "template_cloudinit_config" "productcatalogconfig" {
+  gzip          = true
+  base64_encode = true
+  part {
+    filename     = "appconfig.cfg"
+    content_type = "text/x-shellscript"
+    content      = data.template_file.productcataloginit.rendered
+  }
+}
 resource "aws_network_interface" "productcatalog" {
   subnet_id   = aws_subnet.appsubnet1.id
   private_ips = ["10.0.3.15"]
@@ -346,6 +423,7 @@ resource "aws_network_interface" "productcatalog" {
 resource "aws_instance" "productcatalog" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
+   user_data_base64  = data.template_cloudinit_config.productcatalogconfig.rendered
    network_interface {
     network_interface_id = aws_network_interface.productcatalog.id
     device_index         = 0
@@ -356,6 +434,18 @@ resource "aws_instance" "productcatalog" {
   }
 }
 #Create shipping Server
+data "template_file" "shippinginit" {
+  template = file("scripts/shipping-startup.sh")
+}
+data "template_cloudinit_config" "shippingconfig" {
+  gzip          = true
+  base64_encode = true
+  part {
+    filename     = "appconfig.cfg"
+    content_type = "text/x-shellscript"
+    content      = data.template_file.shippinginit.rendered
+  }
+}
 resource "aws_network_interface" "shipping" {
   subnet_id   = aws_subnet.appsubnet1.id
   private_ips = ["10.0.3.16"]
@@ -367,6 +457,7 @@ resource "aws_network_interface" "shipping" {
 resource "aws_instance" "shipping" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
+   user_data_base64  = data.template_cloudinit_config.shippingconfig.rendered
    network_interface {
     network_interface_id = aws_network_interface.shipping.id
     device_index         = 0
@@ -377,6 +468,18 @@ resource "aws_instance" "shipping" {
   }
 }
 #Create currency Server
+data "template_file" "currencyinit" {
+  template = file("scripts/currency-startup.sh")
+}
+data "template_cloudinit_config" "currencyconfig" {
+  gzip          = true
+  base64_encode = true
+  part {
+    filename     = "appconfig.cfg"
+    content_type = "text/x-shellscript"
+    content      = data.template_file.currencyinit.rendered
+  }
+}
 resource "aws_network_interface" "currency" {
   subnet_id   = aws_subnet.appsubnet1.id
   private_ips = ["10.0.3.17"]
@@ -388,6 +491,7 @@ resource "aws_network_interface" "currency" {
 resource "aws_instance" "currency" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
+   user_data_base64  = data.template_cloudinit_config.currencyconfig.rendered
    network_interface {
     network_interface_id = aws_network_interface.currency.id
     device_index         = 0
@@ -398,6 +502,18 @@ resource "aws_instance" "currency" {
   }
 }
 #Create cart Server
+data "template_file" "cartinit" {
+  template = file("scripts/cart-startup.sh")
+}
+data "template_cloudinit_config" "cartconfig" {
+  gzip          = true
+  base64_encode = true
+  part {
+    filename     = "appconfig.cfg"
+    content_type = "text/x-shellscript"
+    content      = data.template_file.cartinit.rendered
+  }
+}
 resource "aws_network_interface" "cart" {
   subnet_id   = aws_subnet.appsubnet1.id
   private_ips = ["10.0.3.18"]
@@ -409,6 +525,7 @@ resource "aws_network_interface" "cart" {
 resource "aws_instance" "cart" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
+   user_data_base64  = data.template_cloudinit_config.cartconfig.rendered
    network_interface {
     network_interface_id = aws_network_interface.cart.id
     device_index         = 0
@@ -419,6 +536,18 @@ resource "aws_instance" "cart" {
   }
 }
 #Create redis Server
+data "template_file" "redisinit" {
+  template = file("scripts/redis-startup.sh")
+}
+data "template_cloudinit_config" "redisconfig" {
+  gzip          = true
+  base64_encode = true
+  part {
+    filename     = "appconfig.cfg"
+    content_type = "text/x-shellscript"
+    content      = data.template_file.redisinit.rendered
+  }
+}
 resource "aws_network_interface" "redis" {
   subnet_id   = aws_subnet.dbsubnet1.id
   private_ips = ["10.0.5.10"]
@@ -430,6 +559,7 @@ resource "aws_network_interface" "redis" {
 resource "aws_instance" "redis" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
+   user_data_base64  = data.template_cloudinit_config.redisconfig.rendered
    network_interface {
     network_interface_id = aws_network_interface.redis.id
     device_index         = 0
