@@ -185,7 +185,7 @@ resource "aws_security_group" "allow_safe_access" {
 
 #Create Frontend Server
 data "template_file" "frontendinit" {
-  template = file("scripts/front-startup.sh")
+  template = file("scripts/frontend.sh")
 }
 data "template_cloudinit_config" "frontendconfig" {
   gzip          = true
@@ -230,7 +230,7 @@ resource "aws_eip_association" "frontendeipassociation" {
 
 #Create checkout Server
 data "template_file" "checkoutinit" {
-  template = file("scripts/checkout-startup.sh")
+  template = file("scripts/checkout.sh")
 }
 data "template_cloudinit_config" "checkoutconfig" {
   gzip          = true
@@ -266,7 +266,7 @@ resource "aws_instance" "checkout" {
 
 #Create ad Server
 data "template_file" "adinit" {
-  template = file("scripts/ad-startup.sh")
+  template = file("scripts/ad.sh")
 }
 data "template_cloudinit_config" "adconfig" {
   gzip          = true
@@ -301,7 +301,7 @@ resource "aws_instance" "ad" {
 }
 #Create recommendation Server
 data "template_file" "recommendationinit" {
-  template = file("scripts/recommendation-startup.sh")
+  template = file("scripts/recommendation.sh")
 }
 data "template_cloudinit_config" "recommendationconfig" {
   gzip          = true
@@ -336,7 +336,7 @@ resource "aws_instance" "recommendation" {
 }
 #Create payment Server
 data "template_file" "paymentinit" {
-  template = file("scripts/payment-startup.sh")
+  template = file("scripts/payment.sh")
 }
 data "template_cloudinit_config" "paymentconfig" {
   gzip          = true
@@ -371,7 +371,7 @@ resource "aws_instance" "payment" {
 }
 #Create emails Server
 data "template_file" "emailsinit" {
-  template = file("scripts/emails-startup.sh")
+  template = file("scripts/emails.sh")
 }
 data "template_cloudinit_config" "emailsconfig" {
   gzip          = true
@@ -406,7 +406,7 @@ resource "aws_instance" "emails" {
 }
 #Create productcatalog Server
 data "template_file" "productcataloginit" {
-  template = file("scripts/productcatalog-startup.sh")
+  template = file("scripts/productcatalog.sh")
 }
 data "template_cloudinit_config" "productcatalogconfig" {
   gzip          = true
@@ -441,7 +441,7 @@ resource "aws_instance" "productcatalog" {
 }
 #Create shipping Server
 data "template_file" "shippinginit" {
-  template = file("scripts/shipping-startup.sh")
+  template = file("scripts/shipping.sh")
 }
 data "template_cloudinit_config" "shippingconfig" {
   gzip          = true
@@ -476,7 +476,7 @@ resource "aws_instance" "shipping" {
 }
 #Create currency Server
 data "template_file" "currencyinit" {
-  template = file("scripts/currency-startup.sh")
+  template = file("scripts/currency.sh")
 }
 data "template_cloudinit_config" "currencyconfig" {
   gzip          = true
@@ -511,7 +511,7 @@ resource "aws_instance" "currency" {
 }
 #Create cart Server
 data "template_file" "cartinit" {
-  template = file("scripts/cart-startup.sh")
+  template = file("scripts/cart.sh")
 }
 data "template_cloudinit_config" "cartconfig" {
   gzip          = true
@@ -546,7 +546,7 @@ resource "aws_instance" "cart" {
 }
 #Create redis Server
 data "template_file" "redisinit" {
-  template = file("scripts/redis-startup.sh")
+  template = file("scripts/redis.sh")
 }
 data "template_cloudinit_config" "redisconfig" {
   gzip          = true
