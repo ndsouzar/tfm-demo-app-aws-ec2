@@ -253,6 +253,7 @@ resource "aws_instance" "checkout" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
    user_data_base64  = data.template_cloudinit_config.checkoutconfig.rendered
+   depends_on = [aws_internet_gateway.internetgateway]
    network_interface {
     network_interface_id = aws_network_interface.checkout.id
     device_index         = 0
@@ -288,6 +289,7 @@ resource "aws_instance" "ad" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
    user_data_base64  = data.template_cloudinit_config.adconfig.rendered
+   depends_on = [aws_internet_gateway.internetgateway]
    network_interface {
     network_interface_id = aws_network_interface.ad.id
     device_index         = 0
@@ -322,6 +324,7 @@ resource "aws_instance" "recommendation" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
    user_data_base64  = data.template_cloudinit_config.recommendationconfig.rendered
+   depends_on = [aws_internet_gateway.internetgateway]
    network_interface {
     network_interface_id = aws_network_interface.recommendation.id
     device_index         = 0
@@ -356,6 +359,7 @@ resource "aws_instance" "payment" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
    user_data_base64  = data.template_cloudinit_config.paymentconfig.rendered
+   depends_on = [aws_internet_gateway.internetgateway]
    network_interface {
     network_interface_id = aws_network_interface.payment.id
     device_index         = 0
@@ -390,6 +394,7 @@ resource "aws_instance" "emails" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
    user_data_base64  = data.template_cloudinit_config.emailsconfig.rendered
+   depends_on = [aws_internet_gateway.internetgateway]
    network_interface {
     network_interface_id = aws_network_interface.emails.id
     device_index         = 0
@@ -424,6 +429,7 @@ resource "aws_instance" "productcatalog" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
    user_data_base64  = data.template_cloudinit_config.productcatalogconfig.rendered
+   depends_on = [aws_internet_gateway.internetgateway]
    network_interface {
     network_interface_id = aws_network_interface.productcatalog.id
     device_index         = 0
@@ -458,6 +464,7 @@ resource "aws_instance" "shipping" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
    user_data_base64  = data.template_cloudinit_config.shippingconfig.rendered
+   depends_on = [aws_internet_gateway.internetgateway]
    network_interface {
     network_interface_id = aws_network_interface.shipping.id
     device_index         = 0
@@ -492,6 +499,7 @@ resource "aws_instance" "currency" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
    user_data_base64  = data.template_cloudinit_config.currencyconfig.rendered
+   depends_on = [aws_internet_gateway.internetgateway]
    network_interface {
     network_interface_id = aws_network_interface.currency.id
     device_index         = 0
@@ -526,6 +534,7 @@ resource "aws_instance" "cart" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
    user_data_base64  = data.template_cloudinit_config.cartconfig.rendered
+   depends_on = [aws_internet_gateway.internetgateway]
    network_interface {
     network_interface_id = aws_network_interface.cart.id
     device_index         = 0
@@ -560,6 +569,7 @@ resource "aws_instance" "redis" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
    user_data_base64  = data.template_cloudinit_config.redisconfig.rendered
+   depends_on = [aws_internet_gateway.internetgateway]
    network_interface {
     network_interface_id = aws_network_interface.redis.id
     device_index         = 0

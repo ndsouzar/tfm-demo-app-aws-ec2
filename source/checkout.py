@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 @app.route('/checkout')
-def ad():
+def checkout():
     return render_template('checkout.json')
 
 if __name__ == '__main__':

@@ -10,4 +10,4 @@ mkdir app/templates
 cp csw-vm-demo/source/checkout.py app/app.py
 cp csw-vm-demo/source/templates/checkout.json app/templates/
 cd app
-flask run  --host=0.0.0.0 -p 8989&
+sudo flask run  --host=0.0.0.0 -p 8989&
