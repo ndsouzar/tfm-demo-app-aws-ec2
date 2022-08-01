@@ -22,19 +22,19 @@ def main():
     else:
         displaytext= displaytext + "\n" + "ad endpoint is not responding!!"
 
-    response = requests.get("http://10.0.3.10:8989/recommendation")
-    if response.status_code == 200:
-        displaytext= displaytext + "\n" + response.text
-    else:
-        displaytext= displaytext + "\n" + "recommendation endpoint is not responding!!"
-
-    response = requests.get("http://10.0.3.10:8989/payment")
+    response = requests.get("http://10.0.3.10:8991/payment")
     if response.status_code == 200:
         displaytext= displaytext + "\n" + response.text
     else:
         displaytext= displaytext + "\n" + "payment endpoint is not responding!!"
 
-    response = requests.get("http://10.0.3.10:8989/emails")
+    response = requests.get("http://10.0.3.10:8992/recommendation")
+    if response.status_code == 200:
+        displaytext= displaytext + "\n" + response.text
+    else:
+        displaytext= displaytext + "\n" + "recommendation endpoint is not responding!!"
+
+    response = requests.get("http://10.0.3.10:8993/emails")
     if response.status_code == 200:
         displaytext= displaytext + "\n" + response.text
     else:
