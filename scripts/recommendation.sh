@@ -10,4 +10,4 @@ mkdir app/templates
 cp csw-vm-demo/source/recommend.py app/app.py
 cp csw-vm-demo/source/templates/recommended.json app/templates/
 cd app
-flask run  --host=0.0.0.0 -p 8992&
+flask run  --host=0.0.0.0 -p 8991&

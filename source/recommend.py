@@ -11,4 +11,4 @@ def recommend():
     return render_template('recommended.json')
 
 if __name__ == '__main__':
-    app.run(host='localhost',port=8992,debug=True)
+    app.run(host='localhost',port=8991,debug=True)
