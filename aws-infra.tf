@@ -511,7 +511,7 @@ resource "aws_instance" "currency" {
 }
 #Create cart Server
 data "template_file" "cartinit" {
-  template = file("scripts/cart.sh")
+  template = file("scripts/carts.sh")
 }
 data "template_cloudinit_config" "cartconfig" {
   gzip          = true
