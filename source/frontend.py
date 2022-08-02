@@ -58,7 +58,7 @@ def main():
     else:
         displaytext= displaytext + "\n" + "currency endpoint is not responding!!"
 
-    response = requests.get("http://10.0.3.18:8997/cart")
+    response = requests.get("http://10.0.3.18:8997/carts")
     if response.status_code == 200:
         displaytext= displaytext + "\n" + response.text
     else:

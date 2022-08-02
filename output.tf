@@ -1,5 +1,5 @@
-output "fronend" {
-    value = aws_instance.cart.private_ip
+output "frontend" {
+    value = aws_instance.frontend.private_ip
     description = "The instance name for the fronend instance"
 }
 output "checkout" {
