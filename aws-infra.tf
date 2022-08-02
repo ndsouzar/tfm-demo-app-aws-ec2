@@ -530,7 +530,7 @@ resource "aws_network_interface" "cart" {
     Name = "cart"
   }
 }
-resource "aws_instance" "cart" {
+resource "aws_instance" "carts" {
    instance_type = "t2.micro"
    ami = var.images[var.region]
    user_data_base64  = data.template_cloudinit_config.cartconfig.rendered
