@@ -7,8 +7,8 @@ app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 @app.route('/recommend')
-def ad():
-    return render_template('recommend.json')
+def recommend():
+    return render_template('recommended.json')
 
 if __name__ == '__main__':
-    app.run(host='localhost',port=5002,debug=True)
+    app.run(host='localhost',port=8992,debug=True)

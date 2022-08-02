@@ -7,8 +7,8 @@ app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 @app.route('/currency')
-def ad():
+def currency():
     return render_template('currency.json')
 
 if __name__ == '__main__':
-    app.run(host='localhost',port=5002,debug=True)
+    app.run(host='localhost',port=8996,debug=True)

@@ -7,7 +7,7 @@ sudo pip install Flask
 git clone https://github.com/amansin0504/csw-vm-demo.git
 mkdir app/
 mkdir app/templates
-cp csw-vm-demo/source/recommendation.py app/app.py
-cp csw-vm-demo/source/templates/recommendation.json app/templates/
+cp csw-vm-demo/source/recommend.py app/app.py
+cp csw-vm-demo/source/templates/recommended.json app/templates/
 cd app
 flask run  --host=0.0.0.0 -p 8992&
