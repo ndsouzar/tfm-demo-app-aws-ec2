@@ -8,6 +8,6 @@ git clone https://github.com/amansin0504/csw-vm-demo.git
 mkdir app/
 mkdir app/templates
 cp csw-vm-demo/source/redis.py app/app.py
-cp csw-vm-demo/source/templates/redis.json app/templates/
+cp csw-vm-demo/source/templates/redis.db app/templates/
 cd app
 flask run  --host=0.0.0.0 -p 8998&
