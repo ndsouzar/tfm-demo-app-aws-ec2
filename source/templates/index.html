@@ -10,16 +10,39 @@
       integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
       crossorigin="anonymous"
     />
+  <style>
+  #myH1tag {
+  	background-color:#339933;
+  	border: 1px solid black;
+  	border-radius:10px;
+  	padding:10px;
+	color: white;
+  }
+  #myPtag {
+        background-color:tomato;
+        border: 1px solid black;
+        border-radius:10px;
+        padding:10px;
+        color: white;
+  }
+  </style>
   </head>
   <body>
     <div class="container">
-	    <h1>CHECKOUT: {{ checkout }}</h1>
-	    <h1>AD: {{ ad }}</h1>
-	    <h1>RECOMMEND: {{ recommend }}</h1>
-	    <h1>PRODUCTCATALOG: {{ productcatalog }}</h1>
-	    <h1>CARTS: {{ carts }}</h1>
-	    <h1>SHIPPING: {{ shipping }}</h1>
-	    <h1>CURRENCY: {{ currency }}</h1>
+	    <h1 id="myH1tag">CATALOG</h1>
+	    	<p id="myPtag">{{ checkout }}</p>
+	    <h1 id="myH1tag">AD SERVICE</h1>
+            	<p id="myPtag">{{ ad }}</p>
+	    <h1 id="myH1tag">RECOMMEND</h1>
+            	<p id="myPtag">{{ recommend }}</p>
+	    <h1 id="myH1tag">PRODUCTCATALOG</h1>
+            	<p id="myPtag">{{ productcatalog }}</p>
+	    <h1 id="myH1tag">CARTS</h1>
+            	<p id="myPtag">{{ carts }}</p>
+	    <h1 id="myH1tag">SHIPPING</h1>
+            	<p id="myPtag">{{ shipping }}</p>
+	    <h1 id="myH1tag">CURRENCY</h1>
+            	<p id="myPtag">{{ currency }}</p>
     </div>
   </body>
 </html>
