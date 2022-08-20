@@ -9,5 +9,6 @@ mkdir app/
 mkdir app/templates
 cp csw-vm-demo/source/checkout.py app/app.py
 cp csw-vm-demo/source/templates/checkout.json app/templates/
+cp csw-vm-demo/source/templates/web.html app/templates/
 cd app
 sudo flask run  --host=0.0.0.0 -p 8989&

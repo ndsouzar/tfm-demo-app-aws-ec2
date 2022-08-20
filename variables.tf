@@ -1,14 +1,14 @@
 #Update before user
 variable region {
-    default = "us-east-2"
+    default = "us-east-1"
 }
 #Update before user
 variable az1 {
-    default = "us-east-2a"
+    default = "us-east-1a"
 }
 #Update before user
 variable az2 {
-    default = "us-east-2b"
+    default = "us-east-1b"
 }
 
 variable user {
@@ -37,7 +37,7 @@ variable "images" {
 
 #Update before user
 variable "keyname" {
-    default = "ohio"
+    default = "virginia"
 }
 
 #Update before user
