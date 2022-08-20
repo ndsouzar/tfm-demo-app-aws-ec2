@@ -1,6 +1,6 @@
 [
 	{
-		color: "recommend",
-		value: "yes"
+		color: "recommendation",
+		value: "recommended"
 	}
 ]
