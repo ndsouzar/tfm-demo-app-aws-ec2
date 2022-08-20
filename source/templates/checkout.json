@@ -1,6 +1,6 @@
 [
 	{
-		color: "checkout",
+		service: "checkout",
 		value: "checkout"
 	}
 ]

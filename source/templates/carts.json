@@ -1,6 +1,6 @@
 [
 	{
-		color: "cart",
+		service: "cart",
 		value: "cart"
 	}
 ]

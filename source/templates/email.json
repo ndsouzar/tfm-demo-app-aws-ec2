@@ -1,6 +1,6 @@
 [
 	{
-		color: "email",
+		service: "email",
 		value: "amansin3@cisco.com"
 	}
 ]

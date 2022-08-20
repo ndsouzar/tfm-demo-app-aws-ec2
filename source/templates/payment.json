@@ -1,6 +1,6 @@
 [
 	{
-		color: "Payment",
+		service: "Payment",
 		value: "Payment"
 	}
 ]

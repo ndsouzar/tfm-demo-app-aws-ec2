@@ -1,6 +1,6 @@
 [
 	{
-		color: "shipping",
+		service: "shipping",
 		value: "shipped"
 	}
 ]

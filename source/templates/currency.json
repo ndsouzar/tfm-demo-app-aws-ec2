@@ -1,6 +1,6 @@
 [
 	{
-		color: "Currency",
+		service: "Currency",
 		value: "Dollar"
 	}
 ]

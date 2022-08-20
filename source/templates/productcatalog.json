@@ -1,6 +1,6 @@
 [
 	{
-		color: "productcatalog",
+		service: "productcatalog",
 		value: "products"
 	}
 ]
