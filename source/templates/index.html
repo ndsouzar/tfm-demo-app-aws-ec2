@@ -1,10 +1,25 @@
-<iframe src="http://10.0.3.10:8989/checkout" width="400" height="400"></iframe>
-<iframe src="http://10.0.3.11:8990/ad" width="400" height="400"></iframe>
-<iframe src="http://10.0.3.12:8991/payment" width="400" height="400"></iframe>
-<iframe src="http://10.0.3.13:8992/recommendation" width="400" height="400"></iframe>
-<iframe src="http://10.0.3.14:8993/emails" width="400" height="400"></iframe>
-<iframe src="http://10.0.3.15:8994/productcatalog" width="400" height="400"></iframe>
-<iframe src="http://10.0.3.16:8995/shipping" width="400" height="400"></iframe>
-<iframe src="http://10.0.3.17:8996/currency" width="400" height="400"></iframe>
-<iframe src="http://10.0.3.18:8997/cart" width="400" height="400"></iframe>
-<iframe src="http://10.0.5.10:8998/redis" width="400" height="400"></iframe>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>House</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+      integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+	    <h1>CHECKOUT: {{ checkout }}</h1>
+	    <h1>AD: {{ ad }}</h1>
+	    <h1>RECOMMEND: {{ recommend }}</h1>
+	    <h1>PRODUCTCATALOG: {{ productcatalog }}</h1>
+	    <h1>CARTS: {{ carts }}</h1>
+	    <h1>SHIPPING: {{ shipping }}</h1>
+	    <h1>CURRENCY: {{ currency }}</h1>
+    </div>
+  </body>
+</html>
