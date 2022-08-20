@@ -28,18 +28,6 @@ def main():
     else:
         displaytext= displaytext + "\n" + "recommend endpoint is not responding!!"
 
-    response = requests.get("http://10.0.3.13:8992/payment")
-    if response.status_code == 200:
-        displaytext= displaytext + "\n" + response.text
-    else:
-        displaytext= displaytext + "\n" + "payment endpoint is not responding!!"
-
-    response = requests.get("http://10.0.3.14:8993/emails")
-    if response.status_code == 200:
-        displaytext= displaytext + "\n" + response.text
-    else:
-        displaytext= displaytext + "\n" + "emails endpoint is not responding!!"
-
     response = requests.get("http://10.0.3.15:8994/productcatalog")
     if response.status_code == 200:
         displaytext= displaytext + "\n" + response.text
@@ -63,12 +51,6 @@ def main():
         displaytext= displaytext + "\n" + response.text
     else:
         displaytext= displaytext + "\n" + "cart endpoint is not responding!!"
-
-    response = requests.get("http://10.0.5.10:8998/redis")
-    if response.status_code == 200:
-        displaytext= displaytext + "\n" + response.text
-    else:
-        displaytext= displaytext + "\n" + "redis endpoint is not responding!!"
 
     return displaytext
 
