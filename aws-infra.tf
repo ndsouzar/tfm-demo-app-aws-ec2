@@ -2,7 +2,7 @@
 resource "aws_vpc" "safe-vpc-network" {
   cidr_block    = "10.0.0.0/16"
   tags = {
-    Name = "safe-vpc"
+    Name = "microservices-ec2-vpc"
   }
 }
 resource "aws_flow_log" "cswflowlogs" {
@@ -422,7 +422,7 @@ resource "aws_network_interface" "productcatalog" {
   private_ips = ["10.0.3.15"]
   security_groups   = [aws_security_group.allow_safe_access.id]
   tags = {
-    Name = "checkout"
+    Name = "productcatalog"
   }
 }
 resource "aws_instance" "productcatalog" {
