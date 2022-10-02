@@ -1,5 +1,5 @@
 output "access-frontend-at" {
-    value = join(":",list(aws_instance.frontend.public_ip,"8080"))
+    value = join(":",tolist([aws_instance.frontend.public_ip,"8080"]))
     description = "The instance name for the fronend instance"
 }
 output "frontend" {
