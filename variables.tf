@@ -37,7 +37,7 @@ variable "images" {
 
 #Update before user
 variable "keyname" {
-    default = "cloud-lab"
+    default = "virginia"
 }
 
 #Update before user
